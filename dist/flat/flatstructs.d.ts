@@ -4,12 +4,6 @@ declare class Vector3 {
     z: any;
     constructor(flat: any);
 }
-declare class Rotator {
-    pitch: any;
-    yaw: any;
-    roll: any;
-    constructor(flat: any);
-}
 declare class Physics {
     location: Vector3;
     rotation: any;
@@ -431,5 +425,5 @@ declare class QuickChat {
     timeStamp: number;
     constructor(flat: any);
 }
-export { Vector3, Rotator, Physics, Touch, BallInfo, GameInfo, PlayerInfo, BoostPadState, TeamInfo, GameTickPacket, BallPrediction, BoostPad, GoalInfo, FieldInfo, MatchSettings, PlayerConfiguration, GameMode, GameMap, MutatorSettings, ExistingMatchBehavior, MatchLength, MaxScore, OvertimeOption, SeriesLengthOption, GameSpeedOption, BallMaxSpeedOption, BallTypeOption, BallWeightOption, BallSizeOption, BallBouncinessOption, BoostOption, RumbleOption, BoostStrengthOption, GravityOption, DemolishOption, RespawnTimeOption, PlayerClass, PlayerLoadout, Color, LoadoutPaint, QuickChat, QuickChatSelection, };
+export { Touch, BallInfo, GameInfo, PlayerInfo, BoostPadState, TeamInfo, GameTickPacket, BallPrediction, BoostPad, GoalInfo, FieldInfo, MatchSettings, PlayerConfiguration, GameMode, GameMap, MutatorSettings, ExistingMatchBehavior, MatchLength, MaxScore, OvertimeOption, SeriesLengthOption, GameSpeedOption, BallMaxSpeedOption, BallTypeOption, BallWeightOption, BallSizeOption, BallBouncinessOption, BoostOption, RumbleOption, BoostStrengthOption, GravityOption, DemolishOption, RespawnTimeOption, PlayerClass, PlayerLoadout, LoadoutPaint, QuickChat, QuickChatSelection, };
 //# sourceMappingURL=flatstructs.d.ts.map

@@ -709,9 +709,9 @@ class QuickChat {
 }
 
 export {
-  Vector3,
-  Rotator,
-  Physics,
+  // Vector3,
+  // Rotator,
+  // Physics,
   Touch,
   BallInfo,
   GameInfo,
@@ -747,7 +747,7 @@ export {
   RespawnTimeOption,
   PlayerClass,
   PlayerLoadout,
-  Color,
+  // Color,
   LoadoutPaint,
   QuickChat,
   QuickChatSelection,
