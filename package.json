@@ -1,8 +1,8 @@
 {
   "name": "easyrlbot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A RLBot implementation in javascript with Sockets.",
-  "main": "dist/index.js",
+  "main": "dist/index",
   "scripts": {
     "watch": "npx tsc --watch",
     "compile": "tsc && npm run closure",

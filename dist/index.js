@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -33,14 +22,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
+exports.gameStateStuff = exports.controllerStuff = exports.renderStuff = exports.flatstructs = exports.quickChats = exports.Manager = exports.Client = void 0;
 var BotClient_1 = require("./BotClient");
+exports.Client = BotClient_1.BotClient;
 var BotManager_1 = require("./BotManager");
-var utils_1 = require("./utils");
+exports.Manager = BotManager_1.BotManager;
 var QuickChats_1 = __importDefault(require("./QuickChats"));
-var renderStuff = __importStar(require("./RenderManager"));
-var controllerStuff = __importStar(require("./ControllerManager"));
-var gameStateStuff = __importStar(require("./GameState"));
-module.exports = __assign(__assign(__assign(__assign({ Client: BotClient_1.BotClient,
-    Manager: BotManager_1.BotManager,
-    quickChats: QuickChats_1["default"] }, utils_1.flatstructs), controllerStuff), renderStuff), gameStateStuff);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSx5Q0FBa0Q7QUFDbEQsMkNBQXFEO0FBQ3JELGlDQUFzQztBQUN0Qyw0REFBc0M7QUFDdEMsMkRBQStDO0FBQy9DLG1FQUF1RDtBQUN2RCwwREFBOEM7QUFFOUMsTUFBTSxDQUFDLE9BQU8seUNBQ1osTUFBTSx1QkFBQTtJQUNOLE9BQU8seUJBQUE7SUFDUCxVQUFVLHlCQUFBLElBQ1AsbUJBQVcsR0FDWCxlQUFlLEdBQ2YsV0FBVyxHQUNYLGNBQWMsQ0FDbEIsQ0FBQyJ9
+exports.quickChats = QuickChats_1["default"];
+exports.flatstructs = __importStar(require("./flat/flatstructs"));
+exports.renderStuff = __importStar(require("./RenderManager"));
+exports.controllerStuff = __importStar(require("./ControllerManager"));
+exports.gameStateStuff = __importStar(require("./GameState"));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHlDQUFrRDtBQUl6QyxpQkFKYSxxQkFBTSxDQUliO0FBSGYsMkNBQXFEO0FBR3BDLGtCQUhNLHVCQUFPLENBR047QUFGeEIsNERBQXNDO0FBRVoscUJBRm5CLHVCQUFVLENBRW1CO0FBQ3BDLGtFQUFrRDtBQUNsRCwrREFBK0M7QUFDL0MsdUVBQXVEO0FBQ3ZELDhEQUE4QyJ9
