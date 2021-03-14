@@ -127,7 +127,7 @@ class RenderManager {
 
     this.renderList.push(RenderMessage.endRenderMessage(this.builder));
   }
-  drawLine2D_3D(x: number, y: number, end: Vector3, color: Color) {
+  drawLine2D_3D(x: number, y: number, end: Vector3, color: Vector3) {
     if (this.builder == null) return;
     let colorFlat = color.convertToFlat(this.builder);
     RenderMessage.startRenderMessage(this.builder);
