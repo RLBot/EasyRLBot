@@ -21,7 +21,7 @@ declare class RenderManager {
     endRendering(): void;
     drawString2D(x: number, y: number, scaleX: number, scaleY: number, text: string, color: Color): void;
     drawString3D(vector: Vector3, scaleX: number, scaleY: number, text: string, color: Color): void;
-    drawLine2D_3D(x: number, y: number, end: Vector3, color: Vector3): void;
+    drawLine2D_3D(x: number, y: number, end: Vector3, color: Color): void;
     drawLine3D(start: Vector3, end: Vector3, color: Color): void;
     drawRect2D(x: number, y: number, width: number, height: number, filled: boolean, color: Color): void;
     drawRect3D(vector: Vector3, width: number, height: number, filled: boolean, color: Color, centered: Boolean): void;
