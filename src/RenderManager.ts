@@ -140,6 +140,28 @@ class RenderManager {
     RenderMessage.addColor(this.builder, colorFlat ?? 0);
     this.renderList.push(RenderMessage.endRenderMessage(this.builder));
   }
+  drawLine2D(
+    startX: number,
+    startY: number,
+    endX: number,
+    endY: number,
+    color: Color
+  ) {
+    if (this.builder == null) return;
+    let colorFlat = color.convertToFlat(this.builder);
+    RenderMessage.startRenderMessage(this.builder);
+    RenderMessage.addRenderType(this.builder, RenderType.DrawLine2D);
+    RenderMessage.addStart(
+      this.builder,
+      new Vector3(startX, startY, 0).convertToFlat(this.builder) ?? 0
+    );
+    RenderMessage.addEnd(
+      this.builder,
+      new Vector3(endX, endY, 0).convertToFlat(this.builder) ?? 0
+    );
+    RenderMessage.addColor(this.builder, colorFlat);
+    this.renderList.push(RenderMessage.endRenderMessage(this.builder));
+  }
   drawLine3D(start: Vector3, end: Vector3, color: Color) {
     if (this.builder == null) return;
     let colorFlat = color.convertToFlat(this.builder);
