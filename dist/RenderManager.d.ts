@@ -24,8 +24,8 @@ declare class RenderManager {
     drawLine2D_3D(x: number, y: number, end: Vector3, color: Color): void;
     drawLine2D(startX: number, startY: number, endX: number, endY: number, color: Color): void;
     drawLine3D(start: Vector3, end: Vector3, color: Color): void;
-    drawRect2D(x: number, y: number, width: number, height: number, filled: boolean, color: Color): void;
-    drawRect3D(vector: Vector3, width: number, height: number, filled: boolean, color: Color, centered: Boolean): void;
+    drawRect2D(x: number, y: number, width: number, height: number, color: Color): void;
+    drawRect3D(vector: Vector3, width: number, height: number, color: Color, centered: Boolean): void;
     black(): Color;
     white(): Color;
     gray(): Color;

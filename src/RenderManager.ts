@@ -180,7 +180,7 @@ class RenderManager {
     y: number,
     width: number,
     height: number,
-    filled: boolean,
+    // filled: boolean, Remove due to it being a legacy feature
     color: Color
   ) {
     if (this.builder == null) return;
@@ -193,7 +193,7 @@ class RenderManager {
     );
     RenderMessage.addScaleX(this.builder, width);
     RenderMessage.addScaleY(this.builder, height);
-    RenderMessage.addIsFilled(this.builder, filled);
+    // RenderMessage.addIsFilled(this.builder, filled);
     RenderMessage.addColor(this.builder, colorFlat);
     this.renderList.push(RenderMessage.endRenderMessage(this.builder));
   }
@@ -201,7 +201,7 @@ class RenderManager {
     vector: Vector3,
     width: number,
     height: number,
-    filled: boolean,
+    // filled: boolean, Remove due to it being a legacy feature
     color: Color,
     centered: Boolean
   ) {
@@ -218,7 +218,7 @@ class RenderManager {
     );
     RenderMessage.addScaleX(this.builder, width);
     RenderMessage.addScaleY(this.builder, height);
-    RenderMessage.addIsFilled(this.builder, filled);
+    // RenderMessage.addIsFilled(this.builder, filled);
     RenderMessage.addColor(this.builder, colorFlat);
     this.renderList.push(RenderMessage.endRenderMessage(this.builder));
   }
