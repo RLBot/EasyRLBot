@@ -91,5 +91,15 @@ export default {
     Compliments_GC: 56,
     /// Are you <Insert Pro>Bot? *
     Compliments_Pro: 57,
+    /// Lag
+    Custom_Excuses_Lag: 58,
+    /// Ghost inputs
+    Custom_Excuses_GhostInputs: 59,
+    /// RIGGED
+    Custom_Excuses_Rigged: 60,
+    /// Mafia plays!
+    Custom_Toxic_MafiaPlays: 61,
+    /// Yeet!
+    Custom_Exclamation_Yeet: 62,
   },
 };

@@ -75,6 +75,11 @@ declare const _default: {
         Compliments_proud: number;
         Compliments_GC: number;
         Compliments_Pro: number;
+        Custom_Excuses_Lag: number;
+        Custom_Excuses_GhostInputs: number;
+        Custom_Excuses_Rigged: number;
+        Custom_Toxic_MafiaPlays: number;
+        Custom_Exclamation_Yeet: number;
     };
 };
 export default _default;
