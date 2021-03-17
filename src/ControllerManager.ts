@@ -32,9 +32,6 @@ class ControllerManager {
     this.client = client;
   }
   sendInput(controller: Controller) {
-    if (!(controller instanceof Controller)) {
-      throw new Error("Expected Controller.");
-    }
     let controllerState = rlbot.flat.ControllerState;
     let playerInput = rlbot.flat.PlayerInput;
 
