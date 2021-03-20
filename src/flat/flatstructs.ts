@@ -1,38 +1,51 @@
 // This file is copied from RLBotJS by SuperVK. It is translated into typescript and some big changes were made to make it compatible with this codebase.
+export * from "../GameState";
+import {
+  Vector3,
+  Rotator,
+  Physics,
+  BallState,
+  BoostState,
+  GameInfoState,
+  CarState,
+  GameState,
+} from "../GameState";
 
-class Vector3 {
-  x: any;
-  y: any;
-  z: any;
-  constructor(flat: any) {
-    this.x = flat.x();
-    this.y = flat.y();
-    this.z = flat.z();
-  }
-}
+// These are now imported from GameState to not duplicate classes
+// class Vector3 {
+//   x: any;
+//   y: any;
+//   z: any;
+//   constructor(flat: any) {
+//     this.x = flat.x();
+//     this.y = flat.y();
+//     this.z = flat.z();
+//   }
+// }
 
-class Rotator {
-  pitch: any;
-  yaw: any;
-  roll: any;
-  constructor(flat: any) {
-    this.pitch = flat.pitch();
-    this.yaw = flat.yaw();
-    this.roll = flat.roll();
-  }
-}
-class Physics {
-  location: Vector3;
-  rotation: any;
-  velocity: any;
-  angularVelocity: any;
-  constructor(flat: any) {
-    this.location = new Vector3(flat.location());
-    this.rotation = flat.rotation() ? new Rotator(flat.rotation()) : null;
-    this.velocity = new Vector3(flat.velocity());
-    this.angularVelocity = new Vector3(flat.angularVelocity());
-  }
-}
+// class Rotator {
+//   pitch: any;
+//   yaw: any;
+//   roll: any;
+//   constructor(flat: any) {
+//     this.pitch = flat.pitch();
+//     this.yaw = flat.yaw();
+//     this.roll = flat.roll();
+//   }
+// }
+
+// class Physics {
+//   location: Vector3;
+//   rotation: any;
+//   velocity: any;
+//   angularVelocity: any;
+//   constructor(flat: any) {
+//     this.location = new Vector3(flat.location());
+//     this.rotation = flat.rotation() ? new Rotator(flat.rotation()) : null;
+//     this.velocity = new Vector3(flat.velocity());
+//     this.angularVelocity = new Vector3(flat.angularVelocity());
+//   }
+// }
 
 class Touch {
   playerName: any;
@@ -44,8 +57,8 @@ class Touch {
   constructor(flat: any) {
     this.playerName = flat.playerName();
     this.gameSeconds = flat.gameSeconds();
-    this.location = new Vector3(flat.location());
-    this.normal = new Vector3(flat.normal());
+    this.location = new Vector3().fromFlat(flat.location());
+    this.normal = new Vector3().fromFlat(flat.normal());
     this.team = flat.team();
     this.playerIndex = flat.playerIndex();
   }
@@ -67,7 +80,7 @@ class BallInfo {
   latestTouch: any;
   dropShotInfo: any;
   constructor(flat: any) {
-    this.physics = new Physics(flat.physics());
+    this.physics = new Physics().fromFlat(flat.physics());
     this.latestTouch = flat.latestTouch()
       ? new Touch(flat.latestTouch())
       : null;
@@ -223,7 +236,7 @@ class BoostPad {
   location: Vector3;
   isFullBoost: any;
   constructor(flat: any) {
-    this.location = new Vector3(flat.location());
+    this.location = new Vector3().fromFlat(flat.location());
     this.isFullBoost = flat.isFullBoost();
   }
 }
@@ -234,8 +247,8 @@ class GoalInfo {
   direction: Vector3;
   constructor(flat: any) {
     this.teamNum = flat.teamNum();
-    this.location = new Vector3(flat.location());
-    this.direction = new Vector3(flat.direction());
+    this.location = new Vector3().fromFlat(flat.location());
+    this.direction = new Vector3().fromFlat(flat.direction());
   }
 }
 

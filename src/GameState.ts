@@ -19,10 +19,16 @@ class Vector3 {
   x: number;
   y: number;
   z: number;
-  constructor(x: number, y: number, z: number) {
+  constructor(x: number = 0, y: number = 0, z: number = 0) {
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+  fromFlat(flat: any) {
+    this.x = flat.x();
+    this.y = flat.y();
+    this.z = flat.z();
+    return this;
   }
   convertToFlat(builder: flatbuffers.Builder) {
     if (this.x == null && this.y == null && this.z == null) return null;
@@ -45,10 +51,16 @@ class Rotator {
   pitch: number;
   yaw: number;
   roll: number;
-  constructor(pitch: number, yaw: number, roll: number) {
+  constructor(pitch: number = 0, yaw: number = 0, roll: number = 0) {
     this.pitch = pitch;
     this.yaw = yaw;
     this.roll = roll;
+  }
+  fromFlat(flat: any) {
+    this.pitch = flat.pitch();
+    this.yaw = flat.yaw();
+    this.roll = flat.roll();
+    return this;
   }
   convertToFlat(builder: flatbuffers.Builder) {
     if (this.pitch == null && this.yaw == null && this.roll == null)
@@ -70,15 +82,22 @@ class Physics {
   velocity: Vector3;
   angularVelocity: Vector3;
   constructor(
-    location: Vector3,
-    rotation: Rotator,
-    velocity: Vector3,
-    angularVelocity: Vector3
+    location: Vector3 = new Vector3(),
+    rotation: Rotator = new Rotator(),
+    velocity: Vector3 = new Vector3(),
+    angularVelocity: Vector3 = new Vector3()
   ) {
     this.location = location;
     this.rotation = rotation;
     this.velocity = velocity;
     this.angularVelocity = angularVelocity;
+  }
+  fromFlat(flat: any) {
+    this.location = new Vector3().fromFlat(flat.location());
+    this.rotation = new Rotator().fromFlat(flat.rotation());
+    this.velocity = new Vector3().fromFlat(flat.velocity());
+    this.angularVelocity = new Vector3().fromFlat(flat.angularVelocity());
+    return this;
   }
   convertToFlat(builder: flatbuffers.Builder) {
     let locationFlat = this.location
