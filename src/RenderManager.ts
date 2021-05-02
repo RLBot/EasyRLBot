@@ -76,6 +76,7 @@ class RenderManager {
 
     let buf = this.builder.asUint8Array();
 
+    if (this.client.ws == null) return;
     this.client.ws.write(utils.encodeFlat(8, buf));
   }
   drawString2D(

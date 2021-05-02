@@ -6,7 +6,7 @@ import { GameState } from "./GameState";
 import { RenderManager } from "./RenderManager";
 import * as utils from "./utils";
 declare class BotClient {
-    ws: Net.Socket;
+    ws: Net.Socket | null;
     standalone: boolean;
     readyMessageAccepted: boolean;
     latestFieldInfo: utils.flatstructs.FieldInfo | null;
@@ -30,6 +30,7 @@ declare class BotClient {
     setGameState(newGameState: GameState): void;
     setMatchSettings(newMatchSettings: utils.flatstructs.MatchSettings): void;
     sendQuickChat(QuickChatSelection: number, teamOnly?: boolean): void;
+    kill(): void;
     private start;
 }
 export { BotClient };

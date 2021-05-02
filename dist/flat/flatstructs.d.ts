@@ -1,16 +1,5 @@
-declare class Vector3 {
-    x: any;
-    y: any;
-    z: any;
-    constructor(flat: any);
-}
-declare class Physics {
-    location: Vector3;
-    rotation: any;
-    velocity: any;
-    angularVelocity: any;
-    constructor(flat: any);
-}
+export * from "../GameState";
+import { Vector3, Physics } from "../GameState";
 declare class Touch {
     playerName: any;
     gameSeconds: any;

@@ -60,6 +60,7 @@ class ControllerManager {
 
     let buf = builder.asUint8Array();
 
+    if (this.client.ws == null) return;
     this.client.ws.write(utils.encodeFlat(4, buf));
   }
 }

@@ -47,7 +47,7 @@ class BotManager {
       socket.on("data", (data) => {
         let message = data.toString().split("\n");
         let type = message[0];
-        let index = message[1];
+        let index: string = message[1];
         switch (type) {
           case "add":
             if (this.bots[index] != undefined) return;
@@ -61,6 +61,8 @@ class BotManager {
             break;
 
           case "remove":
+            if (!this.bots[index]) return;
+            this.bots[index].kill();
             delete this.bots[index];
             this.logger.log(
               "AgentConnection",

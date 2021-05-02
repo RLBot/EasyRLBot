@@ -3,7 +3,8 @@ declare class Vector3 {
     x: number;
     y: number;
     z: number;
-    constructor(x: number, y: number, z: number);
+    constructor(x?: number, y?: number, z?: number);
+    fromFlat(flat: any): this;
     convertToFlat(builder: flatbuffers.Builder): number | null;
     convertToFlatPartial(builder: flatbuffers.Builder): number | null;
 }
@@ -11,7 +12,8 @@ declare class Rotator {
     pitch: number;
     yaw: number;
     roll: number;
-    constructor(pitch: number, yaw: number, roll: number);
+    constructor(pitch?: number, yaw?: number, roll?: number);
+    fromFlat(flat: any): this;
     convertToFlat(builder: flatbuffers.Builder): number | null;
 }
 declare class Physics {
@@ -19,7 +21,8 @@ declare class Physics {
     rotation: Rotator;
     velocity: Vector3;
     angularVelocity: Vector3;
-    constructor(location: Vector3, rotation: Rotator, velocity: Vector3, angularVelocity: Vector3);
+    constructor(location?: Vector3, rotation?: Rotator, velocity?: Vector3, angularVelocity?: Vector3);
+    fromFlat(flat: any): this;
     convertToFlat(builder: flatbuffers.Builder): number | null;
 }
 declare class BallState {

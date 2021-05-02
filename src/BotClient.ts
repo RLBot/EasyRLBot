@@ -10,7 +10,7 @@ import { RenderManager } from "./RenderManager";
 import * as utils from "./utils";
 
 class BotClient {
-  ws: Net.Socket;
+  ws: Net.Socket | null;
   standalone: boolean;
   readyMessageAccepted: boolean;
 
@@ -88,6 +88,7 @@ class BotClient {
       );
       this.onReady();
     }
+    if (this.ws === null) return;
     let parsedLoad;
     try {
       parsedLoad = utils.decodeFlat(raw);
@@ -145,6 +146,7 @@ class BotClient {
 
     let buf = builder.asUint8Array();
 
+    if (this.ws == null) return;
     this.ws.write(utils.encodeFlat(7, buf));
   }
   setMatchSettings(newMatchSettings: utils.flatstructs.MatchSettings) {
@@ -168,7 +170,12 @@ class BotClient {
 
     let buf = builder.asUint8Array();
 
+    if (this.ws == null) return;
     this.ws.write(utils.encodeFlat(9, buf));
+  }
+
+  kill() {
+    this.ws = null;
   }
 
   private async start() {
@@ -184,6 +191,7 @@ class BotClient {
     builder.finish(readyMessage);
 
     let readyMsgBuf = builder.asUint8Array();
+    if (this.ws == null) return;
     this.ws.write(utils.encodeFlat(11, readyMsgBuf));
   }
 }
