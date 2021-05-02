@@ -1,6 +1,6 @@
 {
   "name": "easyrlbot",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "A RLBot implementation in javascript with Sockets.",
   "main": "dist/index",
   "scripts": {
