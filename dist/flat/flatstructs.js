@@ -122,7 +122,7 @@ var ScoreInfo = /** @class */ (function () {
 }());
 var PlayerInfo = /** @class */ (function () {
     function PlayerInfo(flat) {
-        this.physics = new GameState_1.Physics(flat.physics());
+        this.physics = new GameState_1.Physics().fromFlat(flat.physics());
         this.scoreInfo = new ScoreInfo(flat.scoreInfo());
         this.isDemolished = flat.isDemolished();
         this.hasWheelContact = flat.hasWheelContact();
