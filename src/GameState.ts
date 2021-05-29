@@ -57,6 +57,7 @@ class Rotator {
     this.roll = roll;
   }
   fromFlat(flat: any) {
+    if (flat == null) return this;
     this.pitch = flat.pitch();
     this.yaw = flat.yaw();
     this.roll = flat.roll();

@@ -143,7 +143,7 @@ class PlayerInfo {
   boost: any;
   team: any;
   constructor(flat: any) {
-    this.physics = new Physics(flat.physics());
+    this.physics = new Physics().fromFlat(flat.physics());
     this.scoreInfo = new ScoreInfo(flat.scoreInfo());
     this.isDemolished = flat.isDemolished();
     this.hasWheelContact = flat.hasWheelContact();
@@ -218,7 +218,7 @@ class PredictionSlice {
   physics: Physics;
   constructor(flat: any) {
     this.gameSeconds = flat.gameSeconds();
-    this.physics = new Physics(flat.physics());
+    this.physics = new Physics().fromFlat(flat.physics());
   }
 }
 
