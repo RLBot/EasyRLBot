@@ -54,7 +54,8 @@ function encodeFlat(messageTypeInt: number, flatArray: Uint8Array): Uint8Array {
 }
 function decodeFlat(bytes: Uint8Array) {
   let rawBytes = bytes.subarray(4);
-  let dataType = bytes.subarray(0, 2)[0] + bytes.subarray(0, 2)[1];
+  let rawDataType = Uint8Array.from(bytes).subarray(0, 2);
+  let dataType = ((rawDataType[0] & 0xff) << 8) | (rawDataType[1] & 0xff);
   let buf = new flatbuffers.ByteBuffer(rawBytes);
   let root;
   try {
