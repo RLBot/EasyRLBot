@@ -14,5 +14,6 @@ declare function decodeFlat(bytes: Uint8Array): {
     root: rlbot.flat.GameTickPacket | rlbot.flat.FieldInfo | rlbot.flat.QuickChat | rlbot.flat.BallPrediction | rlbot.flat.MatchSettings | rlbot.flat.MessagePacket | undefined;
     type: number;
 };
-export { Uint16to8Array, Uint8ArrayToString, Logger, encodeFlat, decodeFlat, flatstructs, };
+declare function chunkSplitter(bigChunk: Uint8Array): Uint8Array[];
+export { Uint16to8Array, Uint8ArrayToString, Logger, encodeFlat, decodeFlat, chunkSplitter, flatstructs, };
 //# sourceMappingURL=utils.d.ts.map

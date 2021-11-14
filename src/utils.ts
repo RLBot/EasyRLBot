@@ -104,11 +104,26 @@ function decodeFlat(bytes: Uint8Array) {
   return { root, type: dataType };
 }
 
+function chunkSplitter(bigChunk/*us*/: Uint8Array): Uint8Array[] {
+  let chunks: Uint8Array[] = [];
+  for (let i = 0; i < bigChunk.length;) {
+    let chunkLeft = bigChunk.subarray(i);
+    // let rawDataType = Uint8Array.from(chunkLeft).subarray(0, 2);
+    // let dataType = ((rawDataType[0] & 0xff) << 8) | (rawDataType[1] & 0xff);
+    let rawDataSize = Uint8Array.from(chunkLeft).subarray(2, 4);
+    let dataSize = ((rawDataSize[0] & 0xff) << 8) | (rawDataSize[1] & 0xff);
+    chunks.push(chunkLeft.subarray(0, 4 + dataSize));
+    i+=4+dataSize;
+  }
+  return chunks
+}
+
 export {
   Uint16to8Array,
   Uint8ArrayToString,
   Logger,
   encodeFlat,
   decodeFlat,
+  chunkSplitter,
   flatstructs,
 };

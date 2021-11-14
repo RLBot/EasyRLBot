@@ -49,15 +49,18 @@ class BotClient {
       this.ws = ws || new Net.Socket();
       this.start();
     }
-
-    this.ws.on("data", (f) => {
-      this.messageHandler(f);
-    });
     this.readyMessageAccepted = false;
 
     this.latestFieldInfo = null;
     this.latestBallPrediction = null;
     this.latestMatchSettings = null;
+
+    this.ws.on("data", (f) => {
+      let chunks = utils.chunkSplitter(f);
+      for (let chunk of chunks){
+        this.messageHandler(chunk)
+      }
+    });
   }
 
   onReady() {}
