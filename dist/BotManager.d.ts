@@ -12,7 +12,7 @@ declare class BotManager {
     agentPort: number;
     agentIP: string;
     logger: utils.Logger;
-    constructor(BotClass: any, agentPort: number);
+    constructor(BotClass: any, agentPort: number, rlbotPort?: number);
     private start;
 }
 export { BotManager };
