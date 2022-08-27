@@ -15,14 +15,14 @@ class BotManager {
   agentIP: string;
   logger: utils.Logger = new utils.Logger("Manager");
 
-  constructor(BotClass: any, agentPort: number) {
+  constructor(BotClass: any, agentPort: number, rlbotPort: number = 23234) {
     this.Bot = BotClass;
     this.bots = {};
 
     this.agentPort = agentPort;
     this.agentIP = "localhost";
 
-    const port = 23234;
+    const port = rlbotPort;
     const host = "localhost";
 
     this.ws = new Net.Socket();
