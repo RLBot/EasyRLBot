@@ -16,4 +16,3 @@ declare function decodeFlat(bytes: Uint8Array): {
 };
 declare function chunkSplitter(bigChunk: Uint8Array): Uint8Array[];
 export { Uint16to8Array, Uint8ArrayToString, Logger, encodeFlat, decodeFlat, chunkSplitter, flatstructs, };
-//# sourceMappingURL=utils.d.ts.map

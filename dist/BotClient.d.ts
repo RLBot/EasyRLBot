@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import "colors";
-import Net from "net";
+import * as Net from "net";
 import { ControllerManager } from "./ControllerManager";
 import { GameState } from "./GameState";
 import { RenderManager } from "./RenderManager";
@@ -34,4 +34,3 @@ declare class BotClient {
     private start;
 }
 export { BotClient };
-//# sourceMappingURL=BotClient.d.ts.map

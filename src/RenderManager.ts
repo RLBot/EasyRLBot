@@ -1,6 +1,6 @@
-// This file is copied from RLBotJS by SuperVK. It is translated into typescript and some minor changes were made to make it compatible with this codebase.
+// Credit to SuperVK for big parts of this file
 
-import crypto from "crypto";
+import * as crypto from "crypto";
 import { flatbuffers } from "flatbuffers";
 import { BotClient } from "./BotClient";
 import * as utils from "./utils";

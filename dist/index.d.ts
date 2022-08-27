@@ -6,4 +6,3 @@ export * from "./flat/flatstructs";
 export * from "./ControllerManager";
 export * from "./RenderManager";
 export * from "./GameState";
-//# sourceMappingURL=index.d.ts.map

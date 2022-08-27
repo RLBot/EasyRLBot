@@ -1,5 +1,5 @@
 import "colors";
-import Net from "net";
+import * as Net from "net";
 import { BotClient } from "./BotClient";
 import * as utils from "./utils";
 

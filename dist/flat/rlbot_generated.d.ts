@@ -5317,4 +5317,3 @@ export declare namespace rlbot.flat {
         static createMessagePacket(builder: flatbuffers.Builder, messagesOffset: flatbuffers.Offset, gameSeconds: number, frameNum: number): flatbuffers.Offset;
     }
 }
-//# sourceMappingURL=rlbot_generated.d.ts.map

@@ -11,4 +11,3 @@ declare class Controller {
     constructor();
 }
 export default Controller;
-//# sourceMappingURL=Controller.d.ts.map

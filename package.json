@@ -5,8 +5,9 @@
   "main": "dist/index",
   "scripts": {
     "watch": "npx tsc --watch",
-    "compile": "tsc && npm run closure",
-    "closure": "npx google-closure-compiler --js=\"dist/**.js\" --js_output_file=dist/small.js --language_out=ECMASCRIPT3 -O=BUNDLE"
+    "build": "npm run build:typecheck && npm run build:js",
+    "build:js": "node esbuild.js",
+    "build:typecheck": "tsc"
   },
   "keywords": [
     "rl",
@@ -27,8 +28,7 @@
   },
   "devDependencies": {
     "@types/flatbuffers": "^1.10.0",
-    "google-closure-compiler": "^20210202.0.0",
-    "rimraf": "^3.0.2",
+    "esbuild": "^0.15.5",
     "typescript": "^4.1.3"
   }
 }

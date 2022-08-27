@@ -415,4 +415,3 @@ declare class QuickChat {
     constructor(flat: any);
 }
 export { Touch, BallInfo, GameInfo, PlayerInfo, BoostPadState, TeamInfo, GameTickPacket, BallPrediction, BoostPad, GoalInfo, FieldInfo, MatchSettings, PlayerConfiguration, GameMode, GameMap, MutatorSettings, ExistingMatchBehavior, MatchLength, MaxScore, OvertimeOption, SeriesLengthOption, GameSpeedOption, BallMaxSpeedOption, BallTypeOption, BallWeightOption, BallSizeOption, BallBouncinessOption, BoostOption, RumbleOption, BoostStrengthOption, GravityOption, DemolishOption, RespawnTimeOption, PlayerClass, PlayerLoadout, LoadoutPaint, QuickChat, QuickChatSelection, };
-//# sourceMappingURL=flatstructs.d.ts.map

@@ -17,4 +17,3 @@ declare class ControllerManager {
     sendInput(controller: Controller): void;
 }
 export { Controller, ControllerManager };
-//# sourceMappingURL=ControllerManager.d.ts.map

@@ -41,4 +41,3 @@ declare class RenderManager {
     teal(): Color;
 }
 export { RenderManager, Color };
-//# sourceMappingURL=RenderManager.d.ts.map

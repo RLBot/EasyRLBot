@@ -1,5 +1,5 @@
 import "colors";
-import Net from "net";
+import * as Net from "net";
 import { flatbuffers } from "flatbuffers";
 
 import { rlbot } from "./flat/rlbot_generated";
@@ -57,8 +57,8 @@ class BotClient {
 
     this.ws.on("data", (f) => {
       let chunks = utils.chunkSplitter(f);
-      for (let chunk of chunks){
-        this.messageHandler(chunk)
+      for (let chunk of chunks) {
+        this.messageHandler(chunk);
       }
     });
   }

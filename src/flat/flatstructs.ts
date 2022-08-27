@@ -1,4 +1,4 @@
-// This file is copied from RLBotJS by SuperVK. It is translated into typescript and some big changes were made to make it compatible with this codebase.
+// Credit to SuperVK for huge parts of this file
 export * from "../GameState";
 import {
   Vector3,

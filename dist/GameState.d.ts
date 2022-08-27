@@ -58,4 +58,3 @@ declare class GameState {
     convertToFlat(builder: flatbuffers.Builder): number;
 }
 export { Vector3, Rotator, Physics, BallState, BoostState, GameInfoState, CarState, GameState, };
-//# sourceMappingURL=GameState.d.ts.map
