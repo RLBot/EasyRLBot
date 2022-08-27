@@ -1,7 +1,6 @@
 import "colors";
-import { rlbot } from "./flat/rlbot_generated";
-import { flatbuffers } from "flatbuffers";
-import * as flatstructs from "./flat/flatstructs";
+import * as flat from "./flat/rlbot_generated";
+import * as flatbuffers from "flatbuffers";
 
 class Logger {
   name: string;
@@ -61,13 +60,13 @@ function decodeFlat(bytes: Uint8Array) {
   try {
     switch (dataType) {
       case 1:
-        root = rlbot.flat.GameTickPacket.getRootAsGameTickPacket(buf);
+        root = flat.GameTickPacket.getRootAsGameTickPacket(buf);
         break;
       case 2:
-        root = rlbot.flat.FieldInfo.getRootAsFieldInfo(buf);
+        root = flat.FieldInfo.getRootAsFieldInfo(buf);
         break;
       case 3:
-        root = rlbot.flat.MatchSettings.getRootAsMatchSettings(buf);
+        root = flat.MatchSettings.getRootAsMatchSettings(buf);
         break;
       case 4:
         throw "Invalid type for decoding '4'";
@@ -85,16 +84,19 @@ function decodeFlat(bytes: Uint8Array) {
         throw "Invalid type for decoding '8'";
         break;
       case 9:
-        root = rlbot.flat.QuickChat.getRootAsQuickChat(buf);
+        root = flat.QuickChat.getRootAsQuickChat(buf);
         break;
       case 10:
-        root = rlbot.flat.BallPrediction.getRootAsBallPrediction(buf);
+        root = flat.BallPrediction.getRootAsBallPrediction(buf);
         break;
       case 11:
         throw "Invalid type for decoding '11'";
         break;
       case 12:
-        root = rlbot.flat.MessagePacket.getRootAsMessagePacket(buf);
+        root = flat.MessagePacket.getRootAsMessagePacket(buf);
+        break;
+      default:
+        throw "Unknown type";
         break;
     }
   } catch (e) {
@@ -104,18 +106,18 @@ function decodeFlat(bytes: Uint8Array) {
   return { root, type: dataType };
 }
 
-function chunkSplitter(bigChunk/*us*/: Uint8Array): Uint8Array[] {
+function chunkSplitter(bigChunk: /*us*/ Uint8Array): Uint8Array[] {
   let chunks: Uint8Array[] = [];
-  for (let i = 0; i < bigChunk.length;) {
+  for (let i = 0; i < bigChunk.length; ) {
     let chunkLeft = bigChunk.subarray(i);
     // let rawDataType = Uint8Array.from(chunkLeft).subarray(0, 2);
     // let dataType = ((rawDataType[0] & 0xff) << 8) | (rawDataType[1] & 0xff);
     let rawDataSize = Uint8Array.from(chunkLeft).subarray(2, 4);
     let dataSize = ((rawDataSize[0] & 0xff) << 8) | (rawDataSize[1] & 0xff);
     chunks.push(chunkLeft.subarray(0, 4 + dataSize));
-    i+=4+dataSize;
+    i += 4 + dataSize;
   }
-  return chunks
+  return chunks;
 }
 
 export {
@@ -125,5 +127,4 @@ export {
   encodeFlat,
   decodeFlat,
   chunkSplitter,
-  flatstructs,
 };

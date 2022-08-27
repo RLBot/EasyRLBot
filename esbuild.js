@@ -9,5 +9,6 @@ esbuild
     platform: "node",
     sourcemap: true,
     target: "node16",
+    external: ["flatbuffers"],
   })
   .catch(() => process.exit(1));

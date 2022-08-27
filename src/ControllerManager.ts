@@ -1,6 +1,6 @@
 import { BotClient } from "./BotClient";
-import { rlbot } from "./flat/rlbot_generated";
-import { flatbuffers } from "flatbuffers";
+import * as flat from "./flat/rlbot_generated";
+import * as flatbuffers from "flatbuffers";
 import * as utils from "./utils";
 
 class Controller {
@@ -32,8 +32,8 @@ class ControllerManager {
     this.client = client;
   }
   sendInput(controller: Controller) {
-    let controllerState = rlbot.flat.ControllerState;
-    let playerInput = rlbot.flat.PlayerInput;
+    let controllerState = flat.ControllerState;
+    let playerInput = flat.PlayerInput;
 
     let builder = new flatbuffers.Builder(1024);
 

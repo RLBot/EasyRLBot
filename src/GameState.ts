@@ -1,8 +1,7 @@
 // Credit to SuperVK for big parts of this file
 
-import { flatbuffers } from "flatbuffers";
-import { rlbot } from "./flat/rlbot_generated";
-const flat = rlbot.flat;
+import * as flatbuffers from "flatbuffers";
+import * as flat from "./flat/rlbot_generated";
 const {
   RotatorPartial,
   DesiredPhysics,

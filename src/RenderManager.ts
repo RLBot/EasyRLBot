@@ -1,12 +1,11 @@
 // Credit to SuperVK for big parts of this file
 
 import * as crypto from "crypto";
-import { flatbuffers } from "flatbuffers";
+import * as flatbuffers from "flatbuffers";
 import { BotClient } from "./BotClient";
 import * as utils from "./utils";
-import { rlbot } from "./flat/rlbot_generated";
+import * as flat from "./flat/rlbot_generated";
 import { Vector3 } from "./GameState";
-const flat = rlbot.flat;
 const { RenderMessage, RenderType, RenderGroup } = flat;
 const defaultGroupId = "default";
 const maxInt = 1337;

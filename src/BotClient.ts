@@ -1,8 +1,8 @@
 import "colors";
 import * as Net from "net";
-import { flatbuffers } from "flatbuffers";
+import * as flatbuffers from "flatbuffers";
 
-import { rlbot } from "./flat/rlbot_generated";
+import * as flat from "./flat/rlbot_generated";
 
 import { Controller, ControllerManager } from "./ControllerManager";
 import { GameState } from "./GameState";
@@ -14,9 +14,9 @@ class BotClient {
   standalone: boolean;
   readyMessageAccepted: boolean;
 
-  latestFieldInfo: utils.flatstructs.FieldInfo | null;
-  latestBallPrediction: utils.flatstructs.BallPrediction | null;
-  latestMatchSettings: utils.flatstructs.MatchSettings | null;
+  latestFieldInfo: flat.FieldInfoT | null;
+  latestBallPrediction: flat.BallPredictionT | null;
+  latestMatchSettings: flat.MatchSettingsT | null;
 
   botIndex: number;
 
@@ -66,21 +66,21 @@ class BotClient {
   onReady() {}
 
   getOutput(
-    gameTickPacket: utils.flatstructs.GameTickPacket,
-    fieldInfo: utils.flatstructs.FieldInfo | null,
-    ballPrediction: utils.flatstructs.BallPrediction | null,
-    matchSettings: utils.flatstructs.MatchSettings | null
+    gameTickPacket: flat.GameTickPacketT,
+    fieldInfo: flat.FieldInfoT | null,
+    ballPrediction: flat.BallPredictionT | null,
+    matchSettings: flat.MatchSettingsT | null
   ) {}
 
-  onGameTickPacket(gameTickPacket: utils.flatstructs.GameTickPacket) {}
+  onGameTickPacket(gameTickPacket: flat.GameTickPacketT) {}
 
-  onFieldInfo(fieldInfo: utils.flatstructs.FieldInfo) {}
+  onFieldInfo(fieldInfo: flat.FieldInfoT) {}
 
-  onMatchSettings(matchSettings: utils.flatstructs.MatchSettings) {}
+  onMatchSettings(matchSettings: flat.MatchSettingsT) {}
 
-  onQuickChat(quickChat: utils.flatstructs.QuickChat) {}
+  onQuickChat(quickChat: flat.QuickChatT) {}
 
-  onBallPrediction(ballPrediction: utils.flatstructs.BallPrediction) {}
+  onBallPrediction(ballPrediction: flat.BallPredictionT) {}
 
   private messageHandler(raw: Uint8Array) {
     if (!this.readyMessageAccepted) {
@@ -101,44 +101,45 @@ class BotClient {
         "Recived incorrect data, socket is unstable."
       );
     }
-    let cleanLoad;
-    switch (parsedLoad.type) {
-      case 1:
-        this.GameTickPacketRate++;
-        setTimeout(
-          (() => {
-            this.GameTickPacketRate--;
-          }).bind(this),
-          1000
-        );
-        cleanLoad = new utils.flatstructs.GameTickPacket(parsedLoad.root);
-        this.onGameTickPacket(cleanLoad);
-        this.getOutput(
-          cleanLoad,
-          this.latestFieldInfo,
-          this.latestBallPrediction,
-          this.latestMatchSettings
-        );
-        break;
-      case 2:
-        cleanLoad = new utils.flatstructs.FieldInfo(parsedLoad.root);
-        this.onFieldInfo(cleanLoad);
-        this.latestFieldInfo = cleanLoad;
-        break;
-      case 3:
-        cleanLoad = new utils.flatstructs.MatchSettings(parsedLoad.root);
-        this.onMatchSettings(cleanLoad);
-        this.latestMatchSettings = cleanLoad;
-        break;
-      case 9:
-        cleanLoad = new utils.flatstructs.QuickChat(parsedLoad.root);
-        this.onQuickChat(cleanLoad);
-        break;
-      case 10:
-        cleanLoad = new utils.flatstructs.BallPrediction(parsedLoad.root);
-        this.onBallPrediction(cleanLoad);
-        this.latestBallPrediction = cleanLoad;
-        break;
+
+    let cleanLoad = parsedLoad.root.unpack();
+
+    // Can't use a switch statement here because typescript is too stupid to understand a switch(cleanLoad.constructor)
+
+    if (cleanLoad instanceof flat.GameTickPacketT) {
+      this.GameTickPacketRate++;
+      setTimeout(
+        (() => {
+          this.GameTickPacketRate--;
+        }).bind(this),
+        1000
+      );
+      this.onGameTickPacket(cleanLoad);
+      this.getOutput(
+        cleanLoad,
+        this.latestFieldInfo,
+        this.latestBallPrediction,
+        this.latestMatchSettings
+      );
+    }
+
+    if (cleanLoad instanceof flat.FieldInfoT) {
+      this.latestFieldInfo = cleanLoad;
+      this.onFieldInfo(cleanLoad);
+    }
+
+    if (cleanLoad instanceof flat.MatchSettingsT) {
+      this.latestMatchSettings = cleanLoad;
+      this.onMatchSettings(cleanLoad);
+    }
+
+    if (cleanLoad instanceof flat.QuickChatT) {
+      this.onQuickChat(cleanLoad);
+    }
+
+    if (cleanLoad instanceof flat.BallPredictionT) {
+      this.latestBallPrediction = cleanLoad;
+      this.onBallPrediction(cleanLoad);
     }
   }
 
@@ -152,14 +153,14 @@ class BotClient {
     if (this.ws == null) return;
     this.ws.write(utils.encodeFlat(7, buf));
   }
-  setMatchSettings(newMatchSettings: utils.flatstructs.MatchSettings) {
+  setMatchSettings(newMatchSettings: flat.MatchSettingsT) {
     this.logger.log(
       "MatchSettings",
       "This feature is not supported yet. Support is comming when json support is comming to RLBot."
     );
   }
   sendQuickChat(QuickChatSelection: number, teamOnly: boolean = false) {
-    let quickChat = rlbot.flat.QuickChat;
+    let quickChat = flat.QuickChat;
 
     let builder = new flatbuffers.Builder(1024);
 
@@ -185,12 +186,12 @@ class BotClient {
     if (this.standalone) this.logger.log("Socket", "Connected".green);
     let builder = new flatbuffers.Builder(1024);
 
-    rlbot.flat.ReadyMessage.startReadyMessage(builder);
-    rlbot.flat.ReadyMessage.addWantsBallPredictions(builder, true);
-    rlbot.flat.ReadyMessage.addWantsGameMessages(builder, true);
-    rlbot.flat.ReadyMessage.addWantsQuickChat(builder, true);
+    flat.ReadyMessage.startReadyMessage(builder);
+    flat.ReadyMessage.addWantsBallPredictions(builder, true);
+    flat.ReadyMessage.addWantsGameMessages(builder, true);
+    flat.ReadyMessage.addWantsQuickChat(builder, true);
 
-    let readyMessage = rlbot.flat.ReadyMessage.endReadyMessage(builder);
+    let readyMessage = flat.ReadyMessage.endReadyMessage(builder);
     builder.finish(readyMessage);
 
     let readyMsgBuf = builder.asUint8Array();
