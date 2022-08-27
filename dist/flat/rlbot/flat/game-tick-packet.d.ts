@@ -1,0 +1,52 @@
+import * as flatbuffers from 'flatbuffers';
+import { BallInfo, BallInfoT } from '../../rlbot/flat/ball-info';
+import { BoostPadState, BoostPadStateT } from '../../rlbot/flat/boost-pad-state';
+import { DropshotTile, DropshotTileT } from '../../rlbot/flat/dropshot-tile';
+import { GameInfo, GameInfoT } from '../../rlbot/flat/game-info';
+import { PlayerInfo, PlayerInfoT } from '../../rlbot/flat/player-info';
+import { TeamInfo, TeamInfoT } from '../../rlbot/flat/team-info';
+export declare class GameTickPacket {
+    bb: flatbuffers.ByteBuffer | null;
+    bb_pos: number;
+    __init(i: number, bb: flatbuffers.ByteBuffer): GameTickPacket;
+    static getRootAsGameTickPacket(bb: flatbuffers.ByteBuffer, obj?: GameTickPacket): GameTickPacket;
+    static getSizePrefixedRootAsGameTickPacket(bb: flatbuffers.ByteBuffer, obj?: GameTickPacket): GameTickPacket;
+    players(index: number, obj?: PlayerInfo): PlayerInfo | null;
+    playersLength(): number;
+    boostPadStates(index: number, obj?: BoostPadState): BoostPadState | null;
+    boostPadStatesLength(): number;
+    ball(obj?: BallInfo): BallInfo | null;
+    gameInfo(obj?: GameInfo): GameInfo | null;
+    tileInformation(index: number, obj?: DropshotTile): DropshotTile | null;
+    tileInformationLength(): number;
+    teams(index: number, obj?: TeamInfo): TeamInfo | null;
+    teamsLength(): number;
+    static startGameTickPacket(builder: flatbuffers.Builder): void;
+    static addPlayers(builder: flatbuffers.Builder, playersOffset: flatbuffers.Offset): void;
+    static createPlayersVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset;
+    static startPlayersVector(builder: flatbuffers.Builder, numElems: number): void;
+    static addBoostPadStates(builder: flatbuffers.Builder, boostPadStatesOffset: flatbuffers.Offset): void;
+    static createBoostPadStatesVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset;
+    static startBoostPadStatesVector(builder: flatbuffers.Builder, numElems: number): void;
+    static addBall(builder: flatbuffers.Builder, ballOffset: flatbuffers.Offset): void;
+    static addGameInfo(builder: flatbuffers.Builder, gameInfoOffset: flatbuffers.Offset): void;
+    static addTileInformation(builder: flatbuffers.Builder, tileInformationOffset: flatbuffers.Offset): void;
+    static createTileInformationVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset;
+    static startTileInformationVector(builder: flatbuffers.Builder, numElems: number): void;
+    static addTeams(builder: flatbuffers.Builder, teamsOffset: flatbuffers.Offset): void;
+    static createTeamsVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset;
+    static startTeamsVector(builder: flatbuffers.Builder, numElems: number): void;
+    static endGameTickPacket(builder: flatbuffers.Builder): flatbuffers.Offset;
+    unpack(): GameTickPacketT;
+    unpackTo(_o: GameTickPacketT): void;
+}
+export declare class GameTickPacketT {
+    players: (PlayerInfoT)[];
+    boostPadStates: (BoostPadStateT)[];
+    ball: BallInfoT | null;
+    gameInfo: GameInfoT | null;
+    tileInformation: (DropshotTileT)[];
+    teams: (TeamInfoT)[];
+    constructor(players?: (PlayerInfoT)[], boostPadStates?: (BoostPadStateT)[], ball?: BallInfoT | null, gameInfo?: GameInfoT | null, tileInformation?: (DropshotTileT)[], teams?: (TeamInfoT)[]);
+    pack(builder: flatbuffers.Builder): flatbuffers.Offset;
+}

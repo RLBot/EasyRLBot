@@ -1,4 +1,4 @@
-import { flatbuffers } from "flatbuffers";
+import * as flatbuffers from "flatbuffers";
 import { BotClient } from "./BotClient";
 import { Vector3 } from "./GameState";
 declare class Color {

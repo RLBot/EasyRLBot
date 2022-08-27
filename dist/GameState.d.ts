@@ -1,4 +1,4 @@
-import { flatbuffers } from "flatbuffers";
+import * as flatbuffers from "flatbuffers";
 declare class Vector3 {
     x: number;
     y: number;

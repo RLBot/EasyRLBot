@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import "colors";
 import * as Net from "net";
+import * as flat from "./flat/rlbot_generated";
 import { ControllerManager } from "./ControllerManager";
 import { GameState } from "./GameState";
 import { RenderManager } from "./RenderManager";
@@ -9,9 +10,9 @@ declare class BotClient {
     ws: Net.Socket | null;
     standalone: boolean;
     readyMessageAccepted: boolean;
-    latestFieldInfo: utils.flatstructs.FieldInfo | null;
-    latestBallPrediction: utils.flatstructs.BallPrediction | null;
-    latestMatchSettings: utils.flatstructs.MatchSettings | null;
+    latestFieldInfo: flat.FieldInfoT | null;
+    latestBallPrediction: flat.BallPredictionT | null;
+    latestMatchSettings: flat.MatchSettingsT | null;
     botIndex: number;
     logger: utils.Logger;
     renderer: RenderManager;
@@ -20,15 +21,15 @@ declare class BotClient {
     private internalName;
     constructor(botIndex: number, ws?: Net.Socket | null);
     onReady(): void;
-    getOutput(gameTickPacket: utils.flatstructs.GameTickPacket, fieldInfo: utils.flatstructs.FieldInfo | null, ballPrediction: utils.flatstructs.BallPrediction | null, matchSettings: utils.flatstructs.MatchSettings | null): void;
-    onGameTickPacket(gameTickPacket: utils.flatstructs.GameTickPacket): void;
-    onFieldInfo(fieldInfo: utils.flatstructs.FieldInfo): void;
-    onMatchSettings(matchSettings: utils.flatstructs.MatchSettings): void;
-    onQuickChat(quickChat: utils.flatstructs.QuickChat): void;
-    onBallPrediction(ballPrediction: utils.flatstructs.BallPrediction): void;
+    getOutput(gameTickPacket: flat.GameTickPacketT, fieldInfo: flat.FieldInfoT | null, ballPrediction: flat.BallPredictionT | null, matchSettings: flat.MatchSettingsT | null): void;
+    onGameTickPacket(gameTickPacket: flat.GameTickPacketT): void;
+    onFieldInfo(fieldInfo: flat.FieldInfoT): void;
+    onMatchSettings(matchSettings: flat.MatchSettingsT): void;
+    onQuickChat(quickChat: flat.QuickChatT): void;
+    onBallPrediction(ballPrediction: flat.BallPredictionT): void;
     private messageHandler;
     setGameState(newGameState: GameState): void;
-    setMatchSettings(newMatchSettings: utils.flatstructs.MatchSettings): void;
+    setMatchSettings(newMatchSettings: flat.MatchSettingsT): void;
     sendQuickChat(QuickChatSelection: number, teamOnly?: boolean): void;
     kill(): void;
     private start;

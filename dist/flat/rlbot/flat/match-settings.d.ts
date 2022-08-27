@@ -1,0 +1,57 @@
+import * as flatbuffers from 'flatbuffers';
+import { ExistingMatchBehavior } from '../../rlbot/flat/existing-match-behavior';
+import { GameMap } from '../../rlbot/flat/game-map';
+import { GameMode } from '../../rlbot/flat/game-mode';
+import { MutatorSettings, MutatorSettingsT } from '../../rlbot/flat/mutator-settings';
+import { PlayerConfiguration, PlayerConfigurationT } from '../../rlbot/flat/player-configuration';
+export declare class MatchSettings {
+    bb: flatbuffers.ByteBuffer | null;
+    bb_pos: number;
+    __init(i: number, bb: flatbuffers.ByteBuffer): MatchSettings;
+    static getRootAsMatchSettings(bb: flatbuffers.ByteBuffer, obj?: MatchSettings): MatchSettings;
+    static getSizePrefixedRootAsMatchSettings(bb: flatbuffers.ByteBuffer, obj?: MatchSettings): MatchSettings;
+    playerConfigurations(index: number, obj?: PlayerConfiguration): PlayerConfiguration | null;
+    playerConfigurationsLength(): number;
+    gameMode(): GameMode;
+    gameMap(): GameMap;
+    skipReplays(): boolean;
+    instantStart(): boolean;
+    mutatorSettings(obj?: MutatorSettings): MutatorSettings | null;
+    existingMatchBehavior(): ExistingMatchBehavior;
+    enableLockstep(): boolean;
+    enableRendering(): boolean;
+    enableStateSetting(): boolean;
+    autoSaveReplay(): boolean;
+    static startMatchSettings(builder: flatbuffers.Builder): void;
+    static addPlayerConfigurations(builder: flatbuffers.Builder, playerConfigurationsOffset: flatbuffers.Offset): void;
+    static createPlayerConfigurationsVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset;
+    static startPlayerConfigurationsVector(builder: flatbuffers.Builder, numElems: number): void;
+    static addGameMode(builder: flatbuffers.Builder, gameMode: GameMode): void;
+    static addGameMap(builder: flatbuffers.Builder, gameMap: GameMap): void;
+    static addSkipReplays(builder: flatbuffers.Builder, skipReplays: boolean): void;
+    static addInstantStart(builder: flatbuffers.Builder, instantStart: boolean): void;
+    static addMutatorSettings(builder: flatbuffers.Builder, mutatorSettingsOffset: flatbuffers.Offset): void;
+    static addExistingMatchBehavior(builder: flatbuffers.Builder, existingMatchBehavior: ExistingMatchBehavior): void;
+    static addEnableLockstep(builder: flatbuffers.Builder, enableLockstep: boolean): void;
+    static addEnableRendering(builder: flatbuffers.Builder, enableRendering: boolean): void;
+    static addEnableStateSetting(builder: flatbuffers.Builder, enableStateSetting: boolean): void;
+    static addAutoSaveReplay(builder: flatbuffers.Builder, autoSaveReplay: boolean): void;
+    static endMatchSettings(builder: flatbuffers.Builder): flatbuffers.Offset;
+    unpack(): MatchSettingsT;
+    unpackTo(_o: MatchSettingsT): void;
+}
+export declare class MatchSettingsT {
+    playerConfigurations: (PlayerConfigurationT)[];
+    gameMode: GameMode;
+    gameMap: GameMap;
+    skipReplays: boolean;
+    instantStart: boolean;
+    mutatorSettings: MutatorSettingsT | null;
+    existingMatchBehavior: ExistingMatchBehavior;
+    enableLockstep: boolean;
+    enableRendering: boolean;
+    enableStateSetting: boolean;
+    autoSaveReplay: boolean;
+    constructor(playerConfigurations?: (PlayerConfigurationT)[], gameMode?: GameMode, gameMap?: GameMap, skipReplays?: boolean, instantStart?: boolean, mutatorSettings?: MutatorSettingsT | null, existingMatchBehavior?: ExistingMatchBehavior, enableLockstep?: boolean, enableRendering?: boolean, enableStateSetting?: boolean, autoSaveReplay?: boolean);
+    pack(builder: flatbuffers.Builder): flatbuffers.Offset;
+}
