@@ -5,7 +5,7 @@ esbuild
     entryPoints: ["./src/index.ts"],
     outdir: "./dist",
     bundle: true,
-    minify: false,
+    minify: true,
     platform: "node",
     sourcemap: true,
     target: "node16",
