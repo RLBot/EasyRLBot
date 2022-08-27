@@ -5,10 +5,10 @@
   "main": "dist/index",
   "scripts": {
     "watch": "npx tsc --watch",
-    "build": "npm run build:typecheck && npm run build:js",
+    "build": "npm run build:typedefs && npm run build:js",
     "build:js": "node esbuild.js",
-    "build:typecheck": "tsc",
-    "flatc": "cd src/flat && flatc --gen-object-api --ts rlbot.fbs"
+    "build:typedefs": "tsc",
+    "flatc": "cd src/flat && flatc --gen-object-api --ts rlbot.fbs && echo Remember to update index.ts with all of the classes ending in 'T'"
   },
   "keywords": [
     "rl",
