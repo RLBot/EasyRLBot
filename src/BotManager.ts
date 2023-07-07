@@ -32,11 +32,12 @@ class BotManager {
       this.logger.log("Socket", "Connected".green);
       this.start();
     });
-    this.ws.on("error", () => {
+    this.ws.on("error", (e) => {
       this.logger.log(
         "Socket",
         "Error when connecting to RLBot, make sure RLBot is running.".red
       );
+      console.error(e);
       process.exit(0);
     });
   }
