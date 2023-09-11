@@ -20,10 +20,10 @@ class BotManager {
     this.bots = {};
 
     this.agentPort = agentPort;
-    this.agentIP = "localhost";
+    this.agentIP = "127.0.0.1";
 
     const port = rlbotPort;
-    const host = "localhost";
+    const host = "127.0.0.1";
 
     this.ws = new Net.Socket();
 
